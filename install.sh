@@ -10,6 +10,3 @@ pip install -r requirements.txt
 
 # Installing yabe
 sudo apt install mono-complete
-
-# Installing project repo
-git clone 
