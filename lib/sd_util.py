@@ -15,9 +15,7 @@ def read(fname):
 
 def graph(df):
     df.plot()
-    plt.xlabel('xlabel')
-    plt.ylabel('ylabel')
-    plt.title('title')
-    plt.show()
-
-
+    plt.xlabel('Time')
+    plt.ylabel('Temperature')
+    plt.title('Temp over Time')
+    plt.savefig('graph.png')
