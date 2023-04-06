@@ -1,48 +1,40 @@
 import BAC0
 import time
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
+import lib.sd_util
 
-import 
+PI_ADDR = '192.168.92.68'
+EMULATOR_ADDR = '127.0.0.1' # BASemulator20
+NET_ADDR = '192.168.92.247'
+UDP_PORT = 47808
+SUBNET_MASK = '/24'
+INTERVAL_S = 1
+TIME_FORMAT = "%Y-%b-%d %H:%M:%S"
+TIME_LENGTH = 60 * 20
 
 # Estbalish connection with BACnet netowrk
-bacnet = BAC0.connect(ip='192.168.1.247/24', port=47808)
+bacnet = BAC0.connect(ip=NET_ADDR + SUBNET_MASK, port=UDP_PORT)
 
 # Create a Python object for a BACnet device
-mycontroller = BAC0.device('192.168.92.68', 2749,  bacnet)
+mycontroller = BAC0.device(PI_ADDR, 2749,  bacnet)
 
+# Initialize arrays 
 time_date = []
 temp = []
 
-for i in range(10):
-    temp.append(bacnet.read('192.168.92.68 analogInput 1 presentValue'))
-    time_date.append(time.strftime("%Y-%b-%d %H:%M:%S"))
-    time.sleep(1)
+# Monitors and add temperature data to array
+for i in range(TIME_LENGTH):
+    temp.append(bacnet.read(PI_ADDR + 'analogInput 1 presentValue'))
+    time_date.append(time.strftime(TIME_FORMAT))
+    time.sleep(INTERVAL_S)
 
 df = pd.DataFrame({'time': time_date, 'temperature': temp})
 
-df.plot()
-plt.show()
+# Saves a graph 
+lib.sd_util.graph(df)
 
-# Print a specific data point using a label
-# print(mycontroller['Thermistor'])
+# saves dataframe to csv file
+lib.sd_util.save(df)
 
-# Tuple of a desired property
-# prop = ('analogInput', 1, 'presentValue' )
-
-# Read specified property
-# mycontroller.read_property(prop)
-
-# Prints all device controller properties
-# print(mycontroller.bacnet_properties)
-
-# Print historical data of the data point
-# print(mycontroller['Thermistor'].history)
-
-
-trend = BAC0.TrendLog(1, mycontroller)
-"""
-mycontroller['Thermistor'].chart()
-bacnet.add_chart(controller['Thermistor'])
-trendlog_object.chart()
-"""

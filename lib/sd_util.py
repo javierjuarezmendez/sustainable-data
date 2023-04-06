@@ -1,4 +1,5 @@
 import pandas as pd
+import BAC0
 import matplotlib.pyplot as plt
 
 # function: save()
@@ -19,3 +20,5 @@ def graph(df):
     plt.ylabel('Temperature')
     plt.title('Temp over Time')
     plt.savefig('graph.png')
+
+def temp_save(fname, time, ):
