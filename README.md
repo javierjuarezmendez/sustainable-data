@@ -2,7 +2,7 @@
 
 # Initial Setup
 
-The file `[install.sh](http://install.sh)` is a shell script used to install software and packages for the project.
+The file `install.sh` is a shell script used to install software and packages for the project.
 
 Run the following command to install Wireshark, YABE, python packages, and other dependencies. The command shell shortcut by default is `CTRL + ALT + T` .
 
