@@ -31,7 +31,7 @@ To read the full documentation, visit this link [https://bac0.readthedocs.io/en/
 
 BAC0 is essentially a python scripting application wrapper for BACpypes. BAC0 simplifies desired functionalities of BACnet by providing some basic utility right out of the gate. Everything that BAC0 provides can be done through BACpypes, however BAC0 already provides many simple scripting applications and much more.
 
+## Additional System Dependencies
 sudo apt install libcblas-dev
-export APPDATA=
-sudo apt install libxkbcommon-dev
-sudo apt-get install '^libxcb.*-dev' libx11-xcb-dev libglu1-mesa-dev libxrender-dev libxi-dev libxkbcommon-dev libxkbcommon-x11-dev
+
+
